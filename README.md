@@ -8,6 +8,8 @@ The training process with this AI takes very long since there is only one Snake 
 ![Alt text](https://raw.githubusercontent.com/andwehrm/Snake-AI/master/demo.gif "Demonstration of Gen 10")
 
 This is the Model i used, as you can see it is a simple Sequential Model will just Dense layers, for activation function on the Hidden Layer i used a Linear function and the Activation function for the Output Layer is using Sigmoid, playing arround with this might yield better results but using this i could create a quite fitting model
+Considering the limited view the Snake has i think it has created a quite fitting method as it just slithers arround the whole playing field thus always finding the food no matter where it is, the only problem with this technique is that as the Snake grows longer it will block of its way back with its own Tail. To Counter this one would probably need to give the Snake more complex information about its surroundings.
+I am happy with the result though since this is my first time creating an AI using Neural Networks and Machine Learning, this project was meant for me to learn something and i definetly did.
 
 ![Alt text](https://raw.githubusercontent.com/andwehrm/Snake-AI/master/Neural%20Network.png "Neural Network")
 
