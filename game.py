@@ -209,17 +209,6 @@ def game_end():
     if num >= 1000:
         new_generation()
 
-
-
-    
-
-
-
-    
-
-
-
-
 pygame.init()
 font_style = pygame.font.SysFont("ubuntu",25)
 font_score = pygame.font.SysFont("ubuntu",18)
@@ -246,24 +235,6 @@ def get_fit_for_pos(new_x,new_y):
     global y_food2
     global dis_width
     global dis_height
-
-#    if(last_dist > Distance(new_x,new_y,x_food,y_food)):
-#        if(Distance(new_x,new_y,x_food,y_food) > 500):
-#            new_fit += 1
-#        elif(Distance(new_x,new_y,x_food,y_food) < 500):
-#            new_fit += 2
-#        elif(Distance(new_x,new_y,x_food,y_food) < 400):
-#            new_fit += 4
-#       elif(Distance(new_x,new_y,x_food,y_food) < 200):
-#            new_fit += 32
-#        elif(Distance(new_x,new_y,x_food,y_food) < 100):
-#            new_fit += 64
-#        elif(Distance(new_x,new_y,x_food,y_food) < 50):
-#            new_fit += 128
-#    else:
-#        new_fit -= 1''
-#
-#    new_fit += 1
 
     # Out of Bounds detection
     if new_x > dis_width or new_x < 0 or new_y > dis_height or new_y < 0:
@@ -321,18 +292,6 @@ def main_game():
         if(last_dist > Distance(x,y,x_food,y_food)):
             last_dist = Distance(x,y,x_food,y_food)
             fits[num] += 3
-            #if(Distance(x,y,x_food,y_food) > 500):
-            #  fits[num] += 1
-            #elif(Distance(x,y,x_food,y_food) < 500):
-            #  fits[num] += 2
-            #elif(Distance(x,y,x_food,y_food) < 400):
-            #  fits[num] += 4
-        #elif(Distance(x,y,x_food,y_food) < 200):
-            #   fits[num] += 32
-            #elif(Distance(x,y,x_food,y_food) < 100):
-            #   fits[num] += 64
-            #elif(Distance(x,y,x_food,y_food) < 50):
-        #     fits[num] += 128
         else:
             last_dist = Distance(x,y,x_food,y_food)
             fits[num] -= 1.5
