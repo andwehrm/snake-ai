@@ -39,10 +39,10 @@ def model_create():
 
 last_dist = 1000000000
 # Game Settings
-max_moves = 200
+max_moves = 120
 current_moves = 0
-dis_width = 150
-dis_height = 150
+dis_width = 100
+dis_height = 100
 block_size = 10
 snake_size = 1
 snake_speed = 60
@@ -58,10 +58,15 @@ fits = []
 num = 0
 generation = 0
 
+
+
+
 for i in range(1000):
     models.append(model_create())
     fits.append(0)
 
+
+best_model = models[0]
 # Internal Values
 x_food = 0
 y_food = 0
@@ -76,6 +81,7 @@ snake_block = []
 moved = False
 best_fit = 0
 best_weights = model.get_weights()
+
 
 def draw_text(msg,font,color,coords, center):
     mesg = font.render(msg, True, color)
@@ -140,6 +146,7 @@ def new_generation():
         if fits[i] > best_fit:
            best_fit = fits[i]
            best_weights = models[i].get_weights()
+           
 
     for i in range(1000):
         if fits[i] > fits[parent1]:
@@ -171,6 +178,8 @@ def new_generation():
         fits[select] = 0
     
     models[0].set_weights(best_weights)
+    best_model = models[0]
+    tf.keras.models.save_model(model=best_model, overwrite=True, filepath="best_creature.h5")
 
     
 
@@ -411,14 +420,14 @@ def main_game():
             if(x_food == i[0] and y_food == i[1]):
                 snake_size+=food_strength
                 fits[num] += 150
-                current_moves -= 250
+                current_moves = 0
                 spawn_food()
 
         for i in snake_list:
             if(x_food2 == i[0] and y_food2 == i[1]):
                 snake_size+=food_strength
                 fits[num] += 150
-                current_moves -= 250
+                current_moves = 0
                 spawn_food()
 
 
@@ -426,8 +435,9 @@ def main_game():
         pygame.draw.rect(dis,food_color,[x_food,y_food,block_size,block_size]) 
         pygame.draw.rect(dis,food_color,[x_food2,y_food2,block_size,block_size]) 
     # Score Display
-        draw_text("Score: " + str(snake_size),font_score,text_color,[5,0],False)
-        draw_text("Generation: " + str(generation),font_score,text_color,[5,20],False)
+        pygame.display.set_caption("Score: " + str(snake_size) + " Generation: " + str(generation))
+        #draw_text("Score: " + str(snake_size),font_score,text_color,[5,0],False)
+        #draw_text("Generation: " + str(generation),font_score,text_color,[5,20],False)
 
         pygame.display.update()
         clock.tick(snake_speed)
